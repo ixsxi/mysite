@@ -14,7 +14,7 @@
       <a href="/mysite/main">MySite</a>
    </h1>
    
-   <%
+   <% // authUser 어트리뷰트로 세션값 저장
       if(authUser != null) {
    %>
       

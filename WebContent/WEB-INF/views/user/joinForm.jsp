@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
 <body>
 	<div id="wrap">
 
-		<jsp:include page ="/WEB-INF/views/includes/header.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -43,7 +45,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="./user" method="post">
+						<form action="" method="get">
 	
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -55,7 +57,7 @@
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="pw" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="password" id="input-pass" name="pw" value="" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이름 -->
@@ -88,8 +90,8 @@
 								<button type="submit" id="btn-submit">회원가입</button>
 							</div>
 							
-							<!-- 업무구분 -->
-							<input type="text" name="action" value="join">
+							<!-- 업무구분 //히든으로 하고 -->
+							    <input type="text" name="action" value="join"> 
 						</form>
 					</div>
 					<!-- //joinForm -->
@@ -100,7 +102,7 @@
 		</div>
 		<!-- //container  -->
 		
-		<jsp:include page ="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>

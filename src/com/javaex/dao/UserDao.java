@@ -88,7 +88,8 @@ public class UserDao {
 			pstmt.setString(2, userVo.getPw());
 			pstmt.setString(3, userVo.getName());
 			pstmt.setString(4, userVo.getGender());
-			 count = pstmt.executeUpdate();
+			
+			count = pstmt.executeUpdate();
 			
 		    // 4.결과처리
 			 
@@ -119,7 +120,7 @@ public class UserDao {
 		}
 
 		
-		return 1;
+		return count;
 	}
 		//유저 1명 정보 가져오기(로그인한사람)
 

@@ -32,7 +32,7 @@ public class GuestController extends HttpServlet {
 			
 			
 			GuestbookDao guestbookdao = new GuestbookDao();
-			List<GuestbookVo> guestbookList  = guestbookdao.getList();
+			List<GuestbookVo> guestbookList  = guestbookdao.getList(); // 리턴된 값 guestbookList
 			
 			System.out.println("controller-------------------------");
 			System.out.println(guestbookList);
@@ -43,7 +43,7 @@ public class GuestController extends HttpServlet {
 			
 		}else if("insert".equals(action)) {
 	         System.out.println("[추가]");
-	         
+	          // add list.jsp에서 넘어온 정보들을  vo 로 담는다 .
 	         String name = request.getParameter("name");
 	         String password = request.getParameter("pass");
 	         String content = request.getParameter("content");

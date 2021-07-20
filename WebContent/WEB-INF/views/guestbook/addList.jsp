@@ -4,15 +4,16 @@
     <%@ page import= "com.javaex.vo.GuestbookVo" %>
     <%@ page import= "java.util.List" %>
     <%@ page import= "com.javaex.vo.UserVo"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
     
-    <%
+    <%--
     	//로그인 관련
     	UserVo authUser = (UserVo)session.getAttribute("authUser");
     
     
     	//리스트 출력관련
 		List<GuestbookVo> guestList = (List<GuestbookVo>) request.getAttribute("gList");    
-    %>
+    --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 				</div>
 				<!-- //content-head -->
 
-				<div id="guestbook">
+				<div id="guestbook"> <!-- sumit 눌렀을때 guest? 로 벨류값들이 따라들어감  -->
 					<form action="/mysite/guest" method="get">
 						<table id="guestAdd">
 							<colgroup>
@@ -78,13 +79,13 @@
 							</tbody>
 							
 						</table>
-						<!-- //guestWrite -->
+						<!-- //guestWrite --> <!-- 마지막에 action  insert 로 들어감 컨트롤러에서 action 인서트 실행 -->
 						<input type="hidden" name="action" value="insert">
 						
 					</form>	
-					<%
-						for(int i =0; i<guestList.size(); i++){
-					%>
+					
+						<c:forEach items="${gList}" var="userVo">
+					
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -93,17 +94,17 @@
 							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td><%=guestList.get(i).getNo() %></td>
-							<td><%=guestList.get(i).getName() %></td>
-							<td><%=guestList.get(i).getReg_date() %></td>
-							<td><a href="/mysite/guest?action=dform&no=<%=guestList.get(i).getNo()%>">[삭제]</a></td>
+							<td>${userVo.no }</td>
+							<td>${userVo.name }</td>
+							<td>${userVo.reg_date }</td>
+							<td><a href="/mysite/guest?action=dform&no=${userVo.no }">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>
+							<td colspan=4 class="text-left">${userVo.content }</td>
 						</tr>
 					</table>
 					<!-- //guestRead -->
-					<%} %>
+					</c:forEach>
 					
 					
 					<table class="guestRead">

@@ -61,7 +61,9 @@ public class UserController extends HttpServlet {
 		//dao.insert(vo) --> db저장
 		
 		UserDao userDao = new UserDao();
-		int count = userDao.userInsert(userVo);
+		userDao.userInsert(userVo);
+		
+		
 		//포워드
 		WebUtil.forward(request, response, "/WEB-INF/views/user/joinOk.jsp");
 		
@@ -144,6 +146,7 @@ public class UserController extends HttpServlet {
 			//세션 네임 재설정....???
 			
 			((UserVo)session.getAttribute("authUser")).setName(name);
+			//뭐지 ?? 
 			
 			WebUtil.redirect(request, response, "/mysite/main");
 			
