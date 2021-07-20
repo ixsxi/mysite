@@ -102,5 +102,60 @@ public class BoardDao {
 			
 		}
 	
+		public BoardVo getread(int num) {
+			System.out.println("메소드 실행");
+			BoardVo boardVo=null;
+			
+			getConnection();
+			
+			
+			
+			try {
+				//sql 문 준비
+				String query = "";
+				query += " select b.no, ";
+				query += " b.title, ";
+				query += " b.content, ";
+				query += " b.hit, ";
+				query += " b.reg_date, ";
+				query += " b.user_no, ";
+				query += " u.name ";
+				query += " from board b ,users u ";
+				query += " where b.user_no = u.no ";
+				query += " and b.no = ? ";
+				
+				
+				
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, num);
+				
+				rs = pstmt.executeQuery();
+				
+				
+				//결과처리
+				
+				while(rs.next()) {
+					int no = rs.getInt("no");
+					String title = rs.getString("title");
+					String content = rs.getString("content");
+					int hit = rs.getInt("hit");
+					String reg_date = rs.getString("reg_date");
+					String name = rs.getString("name");
+				
+					boardVo = new BoardVo(no,title,content,hit,reg_date,name);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			close();
+			
+			
+			
+			return boardVo;
+			
+			
+		}
+		
 	
 }

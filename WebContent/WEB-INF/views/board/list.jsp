@@ -66,14 +66,13 @@
 							<c:forEach items="${bList}" var="bo">
 								<tr>
 									<td>${bo.no }</td>
-									<td class="text-left"><a href="#">${bo.title }</a></td>
+									<td class="text-left"><a href="/mysite/Board?action=read&no=${bo.no}">${bo.title }</a></td>
 									<td>${bo.name }</td>
 									<td>${bo.hit }</td>
 									<td>${bo.reg_date }</td>
 									<td><a href="">[삭제]</a></td>
 								</tr>
-								</c:forEach>
-								
+							</c:forEach>
 							</tbody>
 						</table>
 			

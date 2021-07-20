@@ -26,6 +26,21 @@ public class BoardVo {
 
 	//get /set 
 
+	public BoardVo(int no, String title, String content, int hit, String reg_date, String name) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.hit = hit;
+		this.reg_date = reg_date;
+		this.name = name;
+	}
+
+	public BoardVo(int no) {
+		super();
+		this.no = no;
+	}
+
 	public BoardVo(int no, String title, String content, int hit, String reg_date, int user_no, String name) {
 		super();
 		this.no = no;

@@ -42,6 +42,21 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("bList", boardList);
 			
 			WebUtil.forward(request, response, "WEB-INF/views/board/list.jsp");
+		}else if("read".equals(action)) {
+			System.out.println("읽기");
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+			
+			BoardDao boardDao = new BoardDao();
+			BoardVo boardVo = boardDao.getread(no);
+			
+			request.setAttribute("boardVo", boardVo);
+			System.out.println(boardVo);
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/board/read.jsp");
+			
+			
 		}
 		
 	}
