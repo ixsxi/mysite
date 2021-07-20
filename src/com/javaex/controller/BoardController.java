@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.util.WebUtil;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 
 @WebServlet("/Board")
@@ -27,6 +29,7 @@ public class BoardController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = request.getSession();
 		
 		
 		if("list".equals(action)) {
@@ -57,6 +60,25 @@ public class BoardController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/views/board/read.jsp");
 			
 			
+		}else if("Wform".equals(action)) {
+			System.out.println("글쓰기 폼 ");
+			
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/board/writeForm.jsp");
+		}else if("insert".equals(action)) {
+			System.out.println("글쓰기 메소드 실행");
+			
+		 	String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			//로그인한 정보를 고유의값 no 로 가지고오기.
+			int uNum = ((UserVo)session.getAttribute("authUser")).getNo();
+			
+			BoardVo boardVo = new BoardVo(title,content,uNum);
+			BoardDao boardDao =new BoardDao();
+			boardDao.write(boardVo);
+			
+		
+			WebUtil.redirect(request, response, "/mysite/Board?action=list");
 		}
 		
 	}

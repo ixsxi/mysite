@@ -95,7 +95,7 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+						<a id="btn_write" href="/mysite/Board?action=Wform">글쓰기</a>
 					
 					</div>
 					<!-- //list -->

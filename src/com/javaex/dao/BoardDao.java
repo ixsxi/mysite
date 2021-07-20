@@ -157,5 +157,38 @@ public class BoardDao {
 			
 		}
 		
+		
+		public int write(BoardVo bo) {
+			int count = 0;
+			getConnection();
+			
+			try {
+				String query = "";
+				query += " insert into board ";
+				query += " values (seq_board_no.nextval, ?, ?, ? , sysdate, ?) ";
+				
+				
+				pstmt = conn.prepareStatement(query);
+				
+				pstmt.setString(1, bo.getTitle());
+				pstmt.setString(2, bo.getContent());
+				pstmt.setInt(3, bo.getHit());
+				pstmt.setInt(4, bo.getUser_no());
+				
+				
+				count = pstmt.executeUpdate();
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			
+			close();
+			return count;
+			
+			
+			
+		}
 	
 }
